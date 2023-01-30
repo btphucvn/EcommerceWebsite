@@ -1,0 +1,110 @@
+﻿@model EcommerceWebsite.Models.Page
+
+@{
+    ViewData["Title"] = " Xác nhận xóa page " + Model.PageName;
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+            <a class="breadcrumb-item" asp-area="Admin" asp-controller="AdminPages" asp-action="Index">Danh sách sản phẩm</a>
+            <span class="breadcrumb-item active">Thông tin page : @Model.PageName</span>
+        </nav>
+    </div>
+</div>
+<div class="card">
+    <div class="card-body">
+        <div class="page-header no-gutters has-tab">
+            <div class="d-md-flex m-b-15 align-items-center justify-content-between">
+                <div class="media align-items-center m-b-15">
+                    <div class="avatar avatar-image rounded" style="height:70px; width:70px">
+                        <img src="~/images/pages/@Model.Thumb" alt="@Model.Title" />
+                    </div>
+                    <div class="m-l-15">
+                        <h4 class="m-b-0">@Model.PageName</h4>
+                        <p class="text-muted m-b-0">ID: #@Model.PageId</p>
+                    </div>
+                </div>
+                <div class="m-b-15">
+                    <a class="btn btn-primary" asp-route-id="@Model.PageId" asp-area="Admin" asp-controller="AdminPages" asp-action="Edit">Sửa</a>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="table-responsive">
+            <table class="product-info-table m-t-20">
+                <tbody>
+                    <tr>
+                        <td>ID:</td>
+                        <td class="text-dark font-weight-semibold">@Model.PageId</td>
+                    </tr>
+                    <tr>
+                        <td>Tên Page:</td>
+                        <td>@Model.PageName</td>
+                    </tr>
+                    <tr>
+                        <td>Ordering:</td>
+                        <td>@Model.Ordering</td>
+                    </tr>
+                    <tr>
+                        <td>Title:</td>
+                        <td>@Model.Title</td>
+                    </tr>
+                    <tr>
+                        <td>Nội dung:</td>
+                        <td>@Html.Raw(Model.Contents)</td>
+                    </tr>
+                    <tr>
+                        <td>Meta Key:</td>
+                        <td>@Model.MetaKey</td>
+                    </tr>
+                    <tr>
+                        <td>Alias:</td>
+                        <td>@Model.Alias</td>
+                    </tr>
+                    <tr>
+                        <td>MetaDesc:</td>
+                        <td>@Model.MetaDesc</td>
+                    </tr>
+                    <tr>
+                        <td>Ảnh đại diện:</td>
+                        <td>
+                            <img width="200" height="200" src="~/images/pages/@Model.Thumb" alt="@Model.Title" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Published:</td>
+                        <td>
+                            @if (Model.Published == true)
+                            {
+                                <div class="switch m-r-10">
+                                    <input name="Published" disabled="" type="checkbox" checked="" />
+                                    <label for="Published"></label>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="switch m-r-10">
+                                    <input name="Published" disabled="" type="checkbox" />
+                                    <label for="Published"></label>
+                                </div>
+                            }
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <form asp-action="Delete" asp-route-id="@Model.PageId">
+                <input type="hidden" asp-for="PageId" />
+                <input type="submit" value="Xác nhận xóa page" class="btn btn-danger" /> |
+                <a asp-action="Index">Quay lại</a>
+            </form>
+        </div>
+
+    
+    </div>
+</div>
+
+

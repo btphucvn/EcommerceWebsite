@@ -1,0 +1,156 @@
+﻿@model EcommerceWebsite.Models.Page
+
+@{
+    ViewData["Title"] = "Tạo mới page";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@section Styles{
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+
+}
+<div class="page-header">
+    <h2 class="header-title">Orders List</h2>
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="AdminPages" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+            <a class="breadcrumb-item" asp-area="Admin" asp-controller="AdminPages" asp-action="Index">Danh sách Page</a>
+            <span class="breadcrumb-item active">Tạo mới Post</span>
+        </nav>
+    </div>
+</div>
+<form asp-controller="AdminPages" asp-action="Create" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger">
+    </div>
+    <div class="page-header no-gutters has-tab">
+        <div class="d-md-flex m-b-15 align-items-center justify-content-between">
+            <div class="media align-items-center m-b-15">
+            </div>
+            <div class="m-b-15">
+                <button type="submit" class="btn btn-primary">
+                    <i class="anticon anticon-plus-circle"></i>
+                    <span>Tạo mới page</span>
+                </button>
+            </div>
+        </div>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#product-edit-basic">Basic Info</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#product-edit-option">Option Info</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#product-edit-description">Description</a>
+            </li>
+        </ul>
+    </div>
+    <div class="tab-content m-t-15">
+        <div class="tab-pane fade show active" id="product-edit-basic">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="font-weight-semibold" asp-for="PageName">Tên Page:</label>
+                        <input type="text" class="form-control" asp-for="PageName">
+                    </div>                     
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="Ordering">Ordering:</label>
+                        <input type="number" class="form-control" asp-for="Ordering">
+                    </div>               
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="Thumb">Ảnh:</label>
+                        <input name="fThumb" type="file" class="form-control-file" asp-for="Thumb">
+                    </div>
+
+                    <div class="form-group d-flex align-items-center">
+                        <div class="switch m-r-10">
+                            <input type="checkbox" name="Published" id="Published"
+                                   @(Model!=null&&Model.Published==true?"value=true checked": "value=false")
+                                   onclick="changeValueCheckBox()" />
+                            <label for="Published"></label>
+                        </div>
+                        <label>Published</label>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="product-edit-option">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="Title">Title</label>
+                        <input type="text" class="form-control" asp-for="Title">
+
+
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="MetaDesc">MetaDesc</label>
+                        <input type="text" class="form-control" asp-for="MetaDesc">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="MetaKey">MetaKey</label>
+                        <input type="text" class="form-control" asp-for="MetaKey">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="Alias">Alias</label>
+                        <input type="text" class="form-control" asp-for="Alias">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="tab-pane fade" id="product-edit-description">
+            <div class="card">
+                <div class="card-body">
+
+                    <label class="font-weight-semibold" for="productDescription">Nội dung</label>
+                    <textarea type="text" class="summernote" asp-for="Contents"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+@section Scripts{
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+    <script src="~/AdminAssets/vendors/select2/select2.min.js"></script>
+    <script src="~/AdminAssets/js/pages/e-commerce-product-edit.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+
+    <script>
+        $('#Contents').summernote({
+            fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New'],
+            styleTags: ['p', 'h1', 'h2', 'h3', 'h4', 'h5'],
+            placeholder: 'Hello Bootstrap 4',
+            tabsize: 2,
+            height: 100
+        });
+    </script>
+    <script>
+        function changeValueCheckBox() {
+
+            var selected = [];
+            $('input[type=checkbox]').each(function () {
+                if ($(this).is(":checked")) {
+                    var checkBox = document.getElementById($(this).attr('id'));
+                    checkBox.value = "true";
+
+                }
+                else {
+                    var checkBox = document.getElementById($(this).attr('id'));
+                    checkBox.value = "false";
+                }
+            });
+        }
+
+    </script>
+    <script>
+        new Quill('#Description', {
+            theme: 'snow'
+        });
+    </script>
+    <script src="~/AdminAssets/vendors/select2/select2.min.js"></script>
+    <script src="~/AdminAssets/vendors/quill/quill.min.js"></script>
+    <script src="~/AdminAssets/js/pages/e-commerce-product-edit.js"></script>
+}
+

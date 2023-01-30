@@ -1,0 +1,201 @@
+﻿@model EcommerceWebsite.Models.Product
+
+@{
+    ViewData["Title"] = "Chỉnh sửa sản phẩm: " + Model.ProductName;
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+@section Styles{
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+
+}
+
+<form asp-controller="AdminProducts" asp-action="Edit" asp-route-id="@Model.ProductId" method="post" enctype="multipart/form-data">
+
+    <div asp-validation-summary="ModelOnly" class="text-danger">
+    </div>
+
+    <input type="hidden" asp-for="ProductId" />
+    <input type="hidden" asp-for="Thumb" />
+    <input type="hidden" asp-for="DateCreated" />
+
+    <div class="page-header no-gutters has-tab">
+        <div class="d-md-flex m-b-15 align-items-center justify-content-between">
+            <div class="media align-items-center m-b-15">
+            </div>
+            <div class="m-b-15">
+            </div>
+        </div>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#product-edit-basic">Basic Info</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#product-edit-option">Option Info</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#product-edit-description">Description</a>
+            </li>
+        </ul>
+    </div>
+    <div class="tab-content m-t-15">
+        <div class="tab-pane fade show active" id="product-edit-basic">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="font-weight-semibold" asp-for="ProductName">Tên sản phẩm</label>
+                        <input type="text" class="form-control" asp-for="ProductName">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="ProductShortDesc">Mô tả ngắn</label>
+                        <input type="text" class="form-control" asp-for="ShortDesc">
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label class="font-weight-semibold" for="productPrice">Giá bán</label>
+                            <input type="text" class="form-control" asp-for="Price">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="font-weight-semibold" for="productPrice">Discount</label>
+                            <input type="text" class="form-control" asp-for="Discount">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="productCategory">Danh mục sản phẩm</label>
+                        <select class="custom-select" asp-for="CatId" asp-items="ViewBag.DanhMuc">
+                            <option value="" disabled selected>Chọn danh mục</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="productName">Số lượng hàng tồn kho</label>
+                        <input type="text" class="form-control" asp-for="UnitsInStock">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="productBrand">Ảnh đại diện</label>
+                        <br />
+                        <img width="200" height="200" src="~/images/products/@Model.Thumb" alt="@Model.Title" />
+                        <br />
+                        <br />
+                        <input name="fThumb" type="file" class="form-control-file" asp-for="Thumb">
+                    </div>
+                    <div class="form-group d-flex align-items-center">
+                        <div class="switch m-r-10">
+                            <input type="checkbox" name="Active" id="Active"
+                                   @(Model!=null&&Model.Active==true?"value=true checked": "value=false")
+                                   onclick="changeValueCheckBox()" />
+                            <label for="Active"></label>
+                        </div>
+                        <label>Active</label>
+                    </div>
+                    <div class="form-group d-flex align-items-center">
+                        <div class="switch m-r-10">
+                            <input type="checkbox" name="HomeFlag" id="HomeFlag"
+                                   @(Model!=null&&Model.HomeFlag==true?"value=true checked": "value=false")
+                                   onclick="changeValueCheckBox()" />
+
+                            <label for="HomeFlag"></label>
+                        </div>
+                        <label>HomeFlag</label>
+                    </div>
+                    <div class="form-group d-flex align-items-center">
+                        <div class="switch m-r-10">
+                            <input type="checkbox" name="BestSellers" id="BestSellers"
+                                   @(Model!=null&&Model.BestSellers==true?"value=true checked": "value=false")
+                                   onclick="changeValueCheckBox()" />
+                            <label for="BestSellers"></label>
+                        </div>
+                        <label>BestSellers</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary m-r-5">Save</button>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="product-edit-option">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="productSize">Title</label>
+                        <input type="text" class="form-control" asp-for="Title">
+
+
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="productSize">MetaDesc</label>
+                        <input type="text" class="form-control" asp-for="MetaDesc">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="productSize">MetaKey</label>
+                        <input type="text" class="form-control" asp-for="MetaKey">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="productSize">Tags</label>
+                        <input type="text" class="form-control" asp-for="Tags">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="tab-pane fade" id="product-edit-description">
+            <div class="card">
+                <div class="card-body">
+                    @*                    <div id="Description">
+
+                    <p>ound yourself with angels, positive energalm.r.The  I aiing. Alise.</p>
+                    </div>*@
+                    <label class="font-weight-semibold" for="Description">Mô tả sản phẩm</label>
+                    <textarea type="text" class="form-control" asp-for="Description"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+@section Scripts{
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#Description').summernote({
+            height: 200,
+            toolbar: [
+                // [groupName, [list of button]]
+                ['style', ['bold', 'italic', 'underline', 'clear']],
+                ['font', ['strikethrough', 'superscript', 'subscript']],
+                ['fontsize', ['fontsize']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['height', ['height']]
+                ]
+        });
+    });
+    </script>
+    <script>
+        function changeValueCheckBox() {
+
+            var selected = [];
+            $('input[type=checkbox]').each(function () {
+                if ($(this).is(":checked")) {
+                    var checkBox = document.getElementById($(this).attr('id'));
+                    checkBox.value = "true";
+
+                }
+                else {
+                    var checkBox = document.getElementById($(this).attr('id'));
+                    checkBox.value = "false";
+                }
+            });
+        }
+
+    </script>
+    <script>
+        new Quill('#Description', {
+            theme: 'snow'
+        });
+    </script>
+    <script src="~/AdminAssets/vendors/select2/select2.min.js"></script>
+    <script src="~/AdminAssets/vendors/quill/quill.min.js"></script>
+    <script src="~/AdminAssets/js/pages/e-commerce-product-edit.js"></script>
+}
+
