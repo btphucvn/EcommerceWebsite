@@ -14,7 +14,12 @@
                     <h6 class="m-b-0 m-l-10">@item.ProductName</h6>
                 </div>
             </td>
-            <td>@item.Cat.CatName</td>
+            <td>
+                @if (item.Cat != null)
+                {
+                    @item.Cat.CatName
+                }
+            </td>
             <td>@item.Price.Value.ToString("#,##0") VND</td>
             <td>@item.UnitsInStock</td>
 

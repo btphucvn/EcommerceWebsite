@@ -1,4 +1,4 @@
-(function($) {
+(function ($) {
     var $body = $('body'),
         $doc = $(document),
         $html = $('html'),
@@ -1679,8 +1679,9 @@
             var wrapper =  $('.toolbar'),
                 btnDropdown = wrapper.find('[data-toggle]');
             
-
             btnDropdown.on('click', (event) => {
+                console.log("clicked");
+
                 event.preventDefault();
                 event.stopPropagation();
                 var self = $(event.target);

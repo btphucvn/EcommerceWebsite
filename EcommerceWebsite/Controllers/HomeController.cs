@@ -17,10 +17,20 @@ namespace EcommerceWebsite.Controllers
 
         public async Task<IActionResult> IndexAsync()
         {
-            string categoriesJson = await RestAPI.GetJSON("https://localhost:44335/api/Categories");
-            List<Category> categories = JsonConvert.DeserializeObject<List<Category>>(categoriesJson);
             dynamic model = new System.Dynamic.ExpandoObject();
+
+            string categoriesJson = await RestAPI.GetJSON("https://"+Request.Host.Value+"/api/Categories");
+            List<Category> categories = JsonConvert.DeserializeObject<List<Category>>(categoriesJson);
+
+            string arrivalJson = await RestAPI.GetJSON("https://" + Request.Host.Value + "/api/arrivals");
+            List<Arrival> arrival = JsonConvert.DeserializeObject<List<Arrival>>(arrivalJson);
+
+            string slideJson = await RestAPI.GetJSON("https://" + Request.Host.Value + "/api/slides");
+            List<Slide> slide = JsonConvert.DeserializeObject<List<Slide>>(slideJson);
+
             model.Categories = categories;
+            model.Arrivals = arrival;
+            model.Slides = slide;
 
             return View(model);
         }

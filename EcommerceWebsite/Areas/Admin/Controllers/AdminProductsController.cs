@@ -109,9 +109,9 @@ namespace EcommerceWebsite.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 product.ProductName = Utilities.ToTitleCase(product.ProductName);
-                if (product.Active == null) product.Active = false; else product.Active = true;
-                if (product.HomeFlag == null) product.HomeFlag = false; else product.HomeFlag = true;
-                if (product.BestSellers == null) product.BestSellers = false; else product.BestSellers = true;
+                if (product.Active == null) product.Active = false;
+                if (product.HomeFlag == null) product.HomeFlag = false; 
+                if (product.BestSellers == null) product.BestSellers = false;
 
                 if (fThumb != null)
                 {
@@ -147,6 +147,8 @@ namespace EcommerceWebsite.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+            ViewData["DanhMuc"] = new SelectList(_context.Categories, "CatId", "CatName", product.CatId);
+
             return View(product);
         }
 
@@ -172,9 +174,9 @@ namespace EcommerceWebsite.Areas.Admin.Controllers
                 try
                 {
                     product.ProductName = Utilities.ToTitleCase(product.ProductName);
-                    if (product.Active == null) product.Active = false; else product.Active = true;
-                    if (product.HomeFlag == null) product.HomeFlag = false; else product.HomeFlag = true;
-                    if (product.BestSellers == null) product.BestSellers = false; else product.BestSellers = true;
+                    if (product.Active == null) product.Active = false; 
+                    if (product.HomeFlag == null) product.HomeFlag = false; 
+                    if (product.BestSellers == null) product.BestSellers = false;
                     if (fThumb != null)
                     {
                         string extension = Path.GetExtension(fThumb.FileName);

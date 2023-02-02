@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using EcommerceWebsite.Models;
+using Newtonsoft.Json;
 
 namespace EcommerceWebsite.Areas.API.Controllers
 {
@@ -45,11 +46,25 @@ namespace EcommerceWebsite.Areas.API.Controllers
 
         }
 
-        // GET: api/Categories/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Category>> GetCategory(int id)
+        // GET: api/products
+        [HttpGet("GetProductByAlias/{alias}")]
+        public async Task<ActionResult<Category>> GetProductByAlias(string alias)
         {
-            var category = await _context.Categories.FindAsync(id);
+            var category = await _context.Categories
+                .Include(x => x.Products)
+                .Where(x => x.Alias == alias)
+                .FirstAsync();
+            return category;
+        }
+
+        // GET: api/Categories/5
+        [HttpGet("{alias}")]
+        public async Task<ActionResult<Category>> GetCategory(string alias)
+        {
+            var category = await _context.Categories
+                .Include(x=>x.Products)
+                .Where(x => x.Alias == alias)
+                .FirstAsync();
 
             if (category == null)
             {

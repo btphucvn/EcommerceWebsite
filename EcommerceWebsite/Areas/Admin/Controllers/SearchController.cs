@@ -56,14 +56,14 @@ namespace EcommerceWebsite.Areas.Admin.Controllers
         }        
         
         [HttpPost]
-        public IActionResult FindProduct(string keyword)
+        public async Task<IActionResult> FindProduct(string keyword)
         {
             List<Product> ls = new List<Product>();
             if (string.IsNullOrEmpty(keyword) || keyword.Length < 1)
             {
                 return PartialView("ListProductsSearchPartial", null);
             }
-                ls = _context.Products
+            ls = _context.Products
                     .AsNoTracking()
                     .Include(a=>a.Cat)
                     .Where(x => x.ProductName.Contains(keyword))

@@ -1,4 +1,4 @@
-﻿@model EcommerceWebsite.Models.Color
+﻿@model EcommerceWebsite.Models.Size
 
 @{
     ViewData["Title"] = "Edit";
@@ -8,15 +8,15 @@
     <h2 class="header-title">Orders List</h2>
     <div class="header-sub-title">
         <nav class="breadcrumb breadcrumb-dash">
-            <a asp-area="Admin" asp-controller="AdminColors" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
-            <a class="breadcrumb-item" asp-area="Admin" asp-controller="AdminColors" asp-action="Index">Danh sách màu sắc</a>
-            <span class="breadcrumb-item active">Sửa màu sắc</span>
+            <a asp-area="Admin" asp-controller="AdminSizes" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+            <a class="breadcrumb-item" asp-area="Admin" asp-controller="AdminSizes" asp-action="Index">Danh sách size</a>
+            <span class="breadcrumb-item active">Sửa</span>
         </nav>
     </div>
 </div>
-<form asp-controller="AdminColors" asp-action="Edit" method="post" enctype="multipart/form-data">
+<form asp-controller="AdminSizes" asp-action="Edit" method="post" enctype="multipart/form-data">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <input type="hidden" asp-for="ColorId" />
+    <input type="hidden" asp-for="SizeId" />
 
     <div class="page-header no-gutters has-tab">
         <div class="d-md-flex m-b-15 align-items-center justify-content-between">
@@ -35,13 +35,15 @@
             <div class="card">
                 <div class="card-body">
                     <div class="form-group">
-                        <label class="font-weight-semibold" asp-for="ColorCode">Màu sắc:</label>
-                        <input type="color" class="form-control" asp-for="ColorCode" style="height:3rem; width:7rem">
+                        <label class="font-weight-semibold" asp-for="SizeName">Màu sắc:</label>
+                        <input type="color" class="form-control" asp-for="SizeName" style="height:3rem; width:7rem">
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </form>
+
+
 
 

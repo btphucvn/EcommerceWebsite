@@ -34,6 +34,7 @@ namespace EcommerceWebsite.Models
         public int? UnitsInStock { get; set; }
 
         public virtual Category? Cat { get; set; }
+        public virtual Arrival? Arrival { get; set; }
         public virtual ICollection<Attributesprice> Attributesprices { get; set; }
         public virtual ICollection<Orderdetail> Orderdetails { get; set; }
         public virtual ICollection<ProductSizeColor> ProductSizeColors { get; set; }

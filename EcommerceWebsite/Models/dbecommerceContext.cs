@@ -18,6 +18,7 @@ namespace EcommerceWebsite.Models
 
         public virtual DbSet<Account> Accounts { get; set; } = null!;
         public virtual DbSet<Advertise> Advertises { get; set; } = null!;
+        public virtual DbSet<Arrival> Arrivals { get; set; } = null!;
         public virtual DbSet<Attribute> Attributes { get; set; } = null!;
         public virtual DbSet<Attributesprice> Attributesprices { get; set; } = null!;
         public virtual DbSet<Category> Categories { get; set; } = null!;
@@ -33,6 +34,7 @@ namespace EcommerceWebsite.Models
         public virtual DbSet<Role> Roles { get; set; } = null!;
         public virtual DbSet<Shipper> Shippers { get; set; } = null!;
         public virtual DbSet<Size> Sizes { get; set; } = null!;
+        public virtual DbSet<Slide> Slides { get; set; } = null!;
         public virtual DbSet<Transactstatus> Transactstatuses { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -104,6 +106,27 @@ namespace EcommerceWebsite.Models
                 entity.Property(e => e.Title).HasMaxLength(150);
 
                 entity.Property(e => e.UrlLink).HasMaxLength(250);
+            });
+
+            modelBuilder.Entity<Arrival>(entity =>
+            {
+                entity.HasKey(e => e.ProductId)
+                    .HasName("PRIMARY");
+
+                entity.ToTable("arrivals");
+
+                entity.Property(e => e.ProductId)
+                    .HasColumnType("int(11)")
+                    .ValueGeneratedNever()
+                    .HasColumnName("ProductID");
+
+                entity.Property(e => e.Sort).HasColumnType("int(11)");
+
+                entity.HasOne(d => d.Product)
+                    .WithOne(p => p.Arrival)
+                    .HasForeignKey<Arrival>(d => d.ProductId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("fk_Arrivals_Products");
             });
 
             modelBuilder.Entity<Attribute>(entity =>
@@ -204,7 +227,7 @@ namespace EcommerceWebsite.Models
                     .HasColumnName("ColorID");
 
                 entity.Property(e => e.ColorCode)
-                    .HasMaxLength(6)
+                    .HasMaxLength(7)
                     .IsFixedLength();
             });
 
@@ -463,7 +486,7 @@ namespace EcommerceWebsite.Models
 
                 entity.Property(e => e.MetaKey).HasMaxLength(255);
 
-                entity.Property(e => e.ProductName).HasMaxLength(12);
+                entity.Property(e => e.ProductName).HasMaxLength(50);
 
                 entity.Property(e => e.ShortDesc).HasMaxLength(50);
 
@@ -569,6 +592,21 @@ namespace EcommerceWebsite.Models
                 entity.Property(e => e.SizeName)
                     .HasMaxLength(6)
                     .IsFixedLength();
+            });
+
+            modelBuilder.Entity<Slide>(entity =>
+            {
+                entity.ToTable("slides");
+
+                entity.Property(e => e.SlideId)
+                    .HasColumnType("int(11)")
+                    .HasColumnName("SlideID");
+
+                entity.Property(e => e.Link).HasMaxLength(255);
+
+                entity.Property(e => e.Sort).HasColumnType("int(11)");
+
+                entity.Property(e => e.Thumb).HasMaxLength(255);
             });
 
             modelBuilder.Entity<Transactstatus>(entity =>

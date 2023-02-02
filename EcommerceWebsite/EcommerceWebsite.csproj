@@ -37,8 +37,18 @@
     <Folder Include="Areas\API\Data\" />
     <Folder Include="Areas\API\Models\" />
     <Folder Include="Areas\API\Views\" />
+    <Folder Include="wwwroot\images\categories\" />
+    <Folder Include="wwwroot\images\slides\" />
     <Folder Include="wwwroot\images\posts\" />
     <Folder Include="wwwroot\images\pages\" />
+    <Folder Include="wwwroot\images\products\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Areas\Admin\Views\AdminArrivals\Index.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

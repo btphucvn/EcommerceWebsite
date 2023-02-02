@@ -12,26 +12,27 @@
     <meta name="author" content="halothemes">
     <meta name="theme-color" content="#ffffff">
     <!-- Favicon -->
-    <link rel="shortcut icon" href="ShoppingAssets/assets/images/icons/favicon.png">
+    <link rel="shortcut icon" href="ShoppingAssets/images/icons/favicon.png">
     <!-- Plugins bootstrap CSS File -->
-    <link rel="stylesheet" href="./ShoppingAssets/lib/bootstrap/bootstrap.min.css">
-    <link rel="stylesheet" href="./ShoppingAssets/lib/bootstrap/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="~/ShoppingAssets/lib/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="~/ShoppingAssets/lib/bootstrap/bootstrap-grid.min.css">
     <!-- Main CSS File -->
-    <link rel="stylesheet" href="ShoppingAssets/assets/sass/style.css">
-    <link rel="stylesheet" href="ShoppingAssets/assets/sass/demos/demo-1/demo-1.css">
+    <link rel="stylesheet" href="~/ShoppingAssets/assets/sass/style.css">
+    <link rel="stylesheet" href="~/ShoppingAssets/assets/sass/category/component-category.css">
     <!-- Plugins Slick CSS File -->
-    <link rel="stylesheet" href="./ShoppingAssets/lib/slick-carouse/slick.min.css">
-    <!-- Animation CSS File -->
-
-    <link rel="stylesheet" href="ShoppingAssets/assets/sass/base/animation/animation.css">
-    <!-- Product CSS File -->
-    <link rel="stylesheet" href="ShoppingAssets/assets/sass/base/product/component-product.css">
-    <!-- Popup CSS File -->
-    <link rel="stylesheet" href="ShoppingAssets/assets/sass/popup/popup.css">
-    <!-- Sidebar CSS File -->
-    <link rel="stylesheet" href="ShoppingAssets/assets/sass/sidebar/sidebar.css">
+    <link rel="stylesheet" href="~/ShoppingAssets/lib/slick-carouse/slick.min.css">
+    <!-- Plugins Animation CSS File -->
+    <link rel="stylesheet" href="~/ShoppingAssets/assets/sass/base/animation/animation.css">
+    <!-- Plugins Product CSS File -->
+    <link rel="stylesheet" href="~/ShoppingAssets/assets/sass/base/product/component-product.css">
+    <!-- Plugins Popup CSS File -->
+    <link rel="stylesheet" href="~/ShoppingAssets/assets/sass/popup/popup.css">
+    <!-- Plugins Sidebar CSS File -->
+    <link rel="stylesheet" href="~/ShoppingAssets/assets/sass/sidebar/sidebar.css">
     <!-- Plugins Fancybox CSS File -->
-    <link rel="stylesheet" href="./ShoppingAssets/lib/fancybox/fancybox.css">
+    <link rel="stylesheet" href="~/ShoppingAssets/lib/fancybox/fancybox.css">
+
+    <link href="https://use.fontawesome.com/releases/v6.1.2/css/all.css" rel="stylesheet">
 
     @await RenderSectionAsync("Styles",required: false)
 </head>
@@ -543,7 +544,7 @@
                                 <nav class="header__inline-menu">
                                     <ul class="list-menu list-menu--inline text-left">
                                         <li class="menu-lv-item menu-lv-1 text-left has-megamenu dropdown block_layout--custom_width">
-                                            <a href="#" class="menu-lv-1__action header__menu-item list-menu__item link focus-inset menu_mobile_link">
+                                            <a href="danh-muc" class="menu-lv-1__action header__menu-item list-menu__item link focus-inset menu_mobile_link">
                                                 <span class="text header__active-menu-item">
                                                     Danh mục sản phẩm
                                                 </span>
@@ -562,7 +563,7 @@
                                                                         <div class="site-nav-list">
                                                                             @if (category.Levels == 1)
                                                                             {
-                                                                                <a href="@category.Alias" class="site-nav-title uppercase">
+                                                                                <a href="danh-muc/@category.Alias" class="site-nav-title uppercase">
                                                                                     <span class="text">@category.CatName</span>
                                                                                 </a>
                                                                             }
@@ -576,7 +577,7 @@
                                                                                             @if (chillCategory.Levels == 2)
                                                                                             {
                                                                                                 <li class="site-nav-item text-left">
-                                                                                                    <a href="@chillCategory.Alias" class="site-nav-link link link-underline" aria-current="page">
+                                                                                                    <a href="danh-muc/@chillCategory.Alias" class="site-nav-link link link-underline" aria-current="page">
                                                                                                         <span class="text">@chillCategory.CatName</span>
                                                                                                     </a>
                                                                                                 </li>
@@ -2808,10 +2809,10 @@
                     <ul class="list-menu list-menu--inline list-unstyled" id="MenuMobileListSection-menu" data-heading="Menu">
                         <li class="menu-lv-item menu-lv-1 text-left no-megamenu dropdown">
                             <a href="#" class="menu-lv-1__action list-menu__item menu_mobile_link link focus-inset  menu-lv__flex">
-                                <span class="custom-icon style-circle">
-                                    <img src="ShoppingAssets/assets/images/menu-mobile/lv-1.jpg" alt="Home">
+                                <span>
+                                    <i class="fas fa-book"></i>
                                 </span>
-                                <span class="text">Theme Demo</span>
+                                <span class="text">Danh mục sản phẩm</span>
                                 <span class="icon-dropdown" data-toggle-menu-mb>
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret">
                                         <path d="M 7.75 1.34375 L 6.25 2.65625 L 14.65625 12 L 6.25 21.34375 L 7.75 22.65625 L 16.75 12.65625 L 17.34375 12 L 16.75 11.34375 Z"></path>
@@ -2825,546 +2826,77 @@
                                             <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="long-arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon-arrow-nav"><path fill="currentColor" d="M136.97 380.485l7.071-7.07c4.686-4.686 4.686-12.284 0-16.971L60.113 273H436c6.627 0 12-5.373 12-12v-10c0-6.627-5.373-12-12-12H60.113l83.928-83.444c4.686-4.686 4.686-12.284 0-16.971l-7.071-7.07c-4.686-4.686-12.284-4.686-16.97 0l-116.485 116c-4.686 4.686-4.686 12.284 0 16.971l116.485 116c4.686 4.686 12.284 4.686 16.97-.001z" class=""></path></svg>
                                         </span>
                                         <span class="menu-lv-2__action link focus-inset">
-                                            <span class="text">Theme Demo</span>
+                                            <span class="text">Danh mục sản phẩm</span>
                                         </span>
                                     </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left nav-all-mobile">
-                                        <a href="index.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset">
-                                            <span class="text">Go to Home</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left">
-                                        <a href="index.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset menu-lv__flex">
-                                            <span class="text">Home 01 - Classic</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left">
-                                        <a href="index-2.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset menu-lv__flex">
-                                            <span class="text">Home 02 - High Fashion</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left">
-                                        <a href="index-3.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset menu-lv__flex">
-                                            <span class="text">Home 03 - Trendy style</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left">
-                                        <a href="index-4.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset menu-lv__flex">
-                                            <span class="text">Home 04 - Health & Beauty</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left">
-                                        <a href="index-5.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset menu-lv__flex">
-                                            <span class="text">Home 05 - Jewelry</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left">
-                                        <a href="index-6.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset menu-lv__flex">
-                                            <span class="text">Home 06 - Shoes</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left">
-                                        <a href="index-7.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset menu-lv__flex">
-                                            <span class="text">Home 07 - Automotive & Industrial</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left">
-                                        <a href="index-8.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset menu-lv__flex">
-                                            <span class="text">Home 08 - Pet supplies</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left">
-                                        <a href="index-9.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset menu-lv__flex">
-                                            <span class="text">Home 09 - Surfing</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left">
-                                        <a href="index-10.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset menu-lv__flex">
-                                            <span class="text">Home 10 - Electronic & Computer</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="menu-lv-item menu-lv-1 text-left no-megamenu dropdown">
-                            <a href="#" class="menu-lv-1__action list-menu__item menu_mobile_link link focus-inset  menu-lv__flex">
-                                <span class="custom-icon style-circle">
-                                    <img src="ShoppingAssets/assets/images/menu-mobile/lv-1-2.jpg" alt="New In">
-                                </span>
-                                <span class="text">New In</span>
-                                <span class="icon-dropdown" data-toggle-menu-mb>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret">
-                                        <path d="M 7.75 1.34375 L 6.25 2.65625 L 14.65625 12 L 6.25 21.34375 L 7.75 22.65625 L 16.75 12.65625 L 17.34375 12 L 16.75 11.34375 Z"></path>
-                                    </svg>
-                                </span>
-                            </a>
-                            <div class="menu-lv__dropdownmenu menu-dropdown">
-                                <ul class="menu-lv__list list-menu list-unstyled motion-reduce">
-                                    <li class="menu-lv-item menu-lv-2 nav-title-mobile text-center">
-                                        <span class="icon-dropdown">
-                                            <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="long-arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon-arrow-nav"><path fill="currentColor" d="M136.97 380.485l7.071-7.07c4.686-4.686 4.686-12.284 0-16.971L60.113 273H436c6.627 0 12-5.373 12-12v-10c0-6.627-5.373-12-12-12H60.113l83.928-83.444c4.686-4.686 4.686-12.284 0-16.971l-7.071-7.07c-4.686-4.686-12.284-4.686-16.97 0l-116.485 116c-4.686 4.686-4.686 12.284 0 16.971l116.485 116c4.686 4.686 12.284 4.686 16.97-.001z" class=""></path></svg>
-                                        </span>
-                                        <span class="menu-lv-2__action link focus-inset">
-                                            <span class="text">New In</span>
-                                        </span>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left nav-all-mobile">
-                                        <a href="#" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset">
-                                            <span class="text">Go to New In</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left">
-                                        <a href="#" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset menu-lv__flex">
-                                            <span class="text">Top Rated</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left">
-                                        <a href="#" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset menu-lv__flex">
-                                            <span class="text">Bags & Accessories</span>
-                                        </a>
-                                        <div class="menu-lv__dropdownmenu menu-lv__dropdownmenu-3">
-                                            <ul class="menu-lv__grid grid-menu list-unstyled motion-reduce clearfix">
-                                                <li class="menu-lv-item menu-lv-3 text-center">
-                                                    <a href="#" class="menu-lv-3__action grid-menu__item link focus-inset">
-                                                        <span class="custom-image">
-                                                            <img src="ShoppingAssets/assets/images/menu-mobile/lv-3-1.png" alt="new-ella-demo">
-                                                        </span>
-                                                        <span class="text">Blazéro</span>
-                                                    </a>
-                                                </li>
-                                                <li class="menu-lv-item menu-lv-3 text-center">
-                                                    <a href="#" class="menu-lv-3__action grid-menu__item link focus-inset">
-                                                        <span class="custom-image">
-                                                            <img src="ShoppingAssets/assets/images/menu-mobile/lv-3-2.png" alt="new-ella-demo">
-                                                        </span>
-                                                        <span class="text">Congué</span>
-                                                    </a>
-                                                </li>
-                                                <li class="menu-lv-item menu-lv-3 text-center">
-                                                    <a href="#" class="menu-lv-3__action grid-menu__item link focus-inset">
-                                                        <span class="custom-image">
-                                                            <img src="ShoppingAssets/assets/images/menu-mobile/lv-3-3.png" alt="new-ella-demo">
-                                                        </span>
-                                                        <span class="text">Cosmopolis</span>
-                                                    </a>
-                                                </li>
-                                                <li class="menu-lv-item menu-lv-3 text-center">
-                                                    <a href="#" class="menu-lv-3__action grid-menu__item link focus-inset">
-                                                        <span class="custom-image">
-                                                            <img src="ShoppingAssets/assets/images/menu-mobile/lv-3-4.png" alt="new-ella-demo">
-                                                        </span>
-                                                        <span class="text">Scarvéro</span>
-                                                    </a>
-                                                </li>
-                                                <li class="menu-lv-item menu-lv-3 text-center">
-                                                    <a href="#" class="menu-lv-3__action grid-menu__item link focus-inset">
-                                                        <span class="custom-image">
-                                                            <img src="ShoppingAssets/assets/images/menu-mobile/lv-3-5.png" alt="new-ella-demo">
-                                                        </span>
-                                                        <span class="text">Glamos</span>
-                                                    </a>
-                                                </li>
-                                                <li class="menu-lv-item menu-lv-3 text-center">
-                                                    <a href="#" class="menu-lv-3__action grid-menu__item link focus-inset">
-                                                        <span class="custom-image">
-                                                            <img src="ShoppingAssets/assets/images/menu-mobile/lv-3-6.png" alt="new-ella-demo">
-                                                        </span>
-                                                        <span class="text">Valkyrio</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left">
-                                        <a href="#" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset menu-lv__flex">
-                                            <span class="text">New Brands</span>
-                                        </a>
-                                        <div class="menu-lv__dropdownmenu menu-lv__dropdownmenu-3">
-                                            <ul class="menu-lv__grid grid-menu list-unstyled motion-reduce clearfix">
-                                                <li class="menu-lv-item menu-lv-3 text-center">
-                                                    <a href="#" class="menu-lv-3__action grid-menu__item link focus-inset">
-                                                        <span class="custom-image">
-                                                            <img src="ShoppingAssets/assets/images/menu-mobile/lv-3-7.png" alt="new-ella-demo">
-                                                        </span>
-                                                        <span class="text">Trends</span>
-                                                    </a>
-                                                </li>
-                                                <li class="menu-lv-item menu-lv-3 text-center">
-                                                    <a href="#" class="menu-lv-3__action grid-menu__item link focus-inset">
-                                                        <span class="custom-image">
-                                                            <img src="ShoppingAssets/assets/images/menu-mobile/lv-3-8.png" alt="new-ella-demo">
-                                                        </span>
-                                                        <span class="text">Activities</span>
-                                                    </a>
-                                                </li>
-                                                <li class="menu-lv-item menu-lv-3 text-center">
-                                                    <a href="#" class="menu-lv-3__action grid-menu__item link focus-inset">
-                                                        <span class="custom-image">
-                                                            <img src="ShoppingAssets/assets/images/menu-mobile/lv-3-9.png" alt="new-ella-demo">
-                                                        </span>
-                                                        <span class="text">Features</span>
-                                                    </a>
-                                                </li>
-                                                <li class="menu-lv-item menu-lv-3 text-center">
-                                                    <a href="#" class="menu-lv-3__action grid-menu__item link focus-inset">
-                                                        <span class="custom-image">
-                                                            <img src="ShoppingAssets/assets/images/menu-mobile/lv-4-1.png" alt="new-ella-demo">
-                                                        </span>
-                                                        <span class="text">Categories</span>
-                                                    </a>
-                                                </li>
-                                                <li class="menu-lv-item menu-lv-3 text-center">
-                                                    <a href="#" class="menu-lv-3__action grid-menu__item link focus-inset">
-                                                        <span class="custom-image">
-                                                            <img src="ShoppingAssets/assets/images/menu-mobile/lv-4-2.png" alt="new-ella-demo">
-                                                        </span>
-                                                        <span class="text">Types</span>
-                                                    </a>
-                                                </li>
-                                                <li class="menu-lv-item menu-lv-3 text-center">
-                                                    <a href="#" class="menu-lv-3__action grid-menu__item link focus-inset">
-                                                        <span class="custom-image">
-                                                            <img src="ShoppingAssets/assets/images/menu-mobile/lv-4-3.png" alt="new-ella-demo">
-                                                        </span>
-                                                        <span class="text">Vendor</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left">
-                                        <a href="#" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset menu-lv__flex">
-                                            <span class="text">New Collections</span>
-                                        </a>
-                                        <div class="menu-lv__dropdownmenu menu-lv__dropdownmenu-3">
-                                            <ul class="menu-lv__grid grid-menu list-unstyled motion-reduce clearfix">
-                                                <li class="menu-lv-item menu-lv-3 text-center">
-                                                    <a href="#" class="menu-lv-3__action grid-menu__item link focus-inset">
-                                                        <span class="custom-image">
-                                                            <img src="ShoppingAssets/assets/images/menu-mobile/lv-4-4.png" alt="new-ella-demo">
-                                                        </span>
-                                                        <span class="text">Women</span>
-                                                    </a>
-                                                </li>
-                                                <li class="menu-lv-item menu-lv-3 text-center">
-                                                    <a href="#" class="menu-lv-3__action grid-menu__item link focus-inset">
-                                                        <span class="custom-image">
-                                                            <img src="ShoppingAssets/assets/images/menu-mobile/lv-4-5.png" alt="new-ella-demo">
-                                                        </span>
-                                                        <span class="text">Men's</span>
-                                                    </a>
-                                                </li>
-                                                <li class="menu-lv-item menu-lv-3 text-center">
-                                                    <a href="#" class="menu-lv-3__action grid-menu__item link focus-inset">
-                                                        <span class="custom-image">
-                                                            <img src="ShoppingAssets/assets/images/menu-mobile/lv-4-6.png" alt="new-ella-demo">
-                                                        </span>
-                                                        <span class="text">Kids</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="menu-lv-item menu-lv-1 text-left no-megamenu dropdown">
-                            <a href="#" class="menu-lv-1__action list-menu__item menu_mobile_link link focus-inset  menu-lv__flex">
-                                <span class="custom-icon style-circle">
-                                    <img src="ShoppingAssets/assets/images/menu-mobile/lv-1-1.jpg" alt="Accessories">
-                                </span>
-                                <span class="text">Shop</span>
-                                <span class="icon-dropdown" data-toggle-menu-mb>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret">
-                                        <path d="M 7.75 1.34375 L 6.25 2.65625 L 14.65625 12 L 6.25 21.34375 L 7.75 22.65625 L 16.75 12.65625 L 17.34375 12 L 16.75 11.34375 Z"></path>
-                                    </svg>
-                                </span>
-                            </a>
-                            <div class="menu-lv__dropdownmenu menu-dropdown">
-                                <ul class="menu-lv__list list-menu list-unstyled motion-reduce">
-                                    <li class="menu-lv-item menu-lv-2 nav-title-mobile text-center">
-                                        <span class="icon-dropdown">
-                                            <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="long-arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon-arrow-nav"><path fill="currentColor" d="M136.97 380.485l7.071-7.07c4.686-4.686 4.686-12.284 0-16.971L60.113 273H436c6.627 0 12-5.373 12-12v-10c0-6.627-5.373-12-12-12H60.113l83.928-83.444c4.686-4.686 4.686-12.284 0-16.971l-7.071-7.07c-4.686-4.686-12.284-4.686-16.97 0l-116.485 116c-4.686 4.686-4.686 12.284 0 16.971l116.485 116c4.686 4.686 12.284 4.686 16.97-.001z" class=""></path></svg>
-                                        </span>
-                                        <span class="menu-lv-2__action link focus-inset">
-                                            <span class="text">Shop</span>
-                                        </span>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left nav-all-mobile">
-                                        <a href="collections-list.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset">
-                                            <span class="text">Collection List Default</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left nav-all-mobile">
-                                        <a href="collections-list-2.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset">
-                                            <span class="text">Collection List 02</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left nav-all-mobile">
-                                        <a href="collections-list-3.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset">
-                                            <span class="text">Collection List 03</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left nav-all-mobile">
-                                        <a href="collections-list-fullwidth.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset">
-                                            <span class="text">Collection List Full width</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left nav-all-mobile">
-                                        <a href="collections-list-masonry.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset">
-                                            <span class="text">Collection List Masonry</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left nav-all-mobile">
-                                        <a href="category-default.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset">
-                                            <span class="text">Category Default</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left nav-all-mobile">
-                                        <a href="category-full-width.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset">
-                                            <span class="text">Category Full Width</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left nav-all-mobile">
-                                        <a href="category-mansory.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset">
-                                            <span class="text">Category Masonry</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left nav-all-mobile">
-                                        <a href="category-right-sidebar.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset">
-                                            <span class="text">Category Right Sidebar</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left nav-all-mobile">
-                                        <a href="category-width-banner.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset">
-                                            <span class="text">Category Width Banner</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="menu-lv-item menu-lv-1 text-left no-megamenu dropdown">
-                            <a href="#" class="menu-lv-1__action list-menu__item menu_mobile_link link focus-inset  menu-lv__flex">
-                                <span class="custom-icon style-circle">
-                                    <img src="ShoppingAssets/assets/images/menu-mobile/lv-1-3.png" alt="Shop This Look">
-                                </span>
-                                <span class="text">Tin Tức</span>
-                                <span class="icon-dropdown" data-toggle-menu-mb>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret">
-                                        <path d="M 7.75 1.34375 L 6.25 2.65625 L 14.65625 12 L 6.25 21.34375 L 7.75 22.65625 L 16.75 12.65625 L 17.34375 12 L 16.75 11.34375 Z"></path>
-                                    </svg>
-                                </span>
-                            </a>
-                            <div class="menu-lv__dropdownmenu menu-dropdown">
-                                <ul class="menu-lv__list list-menu list-unstyled motion-reduce">
-                                    <li class="menu-lv-item menu-lv-2 nav-title-mobile text-center">
-                                        <span class="icon-dropdown">
-                                            <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="long-arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon-arrow-nav"><path fill="currentColor" d="M136.97 380.485l7.071-7.07c4.686-4.686 4.686-12.284 0-16.971L60.113 273H436c6.627 0 12-5.373 12-12v-10c0-6.627-5.373-12-12-12H60.113l83.928-83.444c4.686-4.686 4.686-12.284 0-16.971l-7.071-7.07c-4.686-4.686-12.284-4.686-16.97 0l-116.485 116c-4.686 4.686-4.686 12.284 0 16.971l116.485 116c4.686 4.686 12.284 4.686 16.97-.001z" class=""></path></svg>
-                                        </span>
-                                        <span class="menu-lv-2__action link focus-inset">
-                                            <span class="text">Hướng dẫn</span>
-                                        </span>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left nav-all-mobile">
-                                        <a href="wishlists.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset">
-                                            <span class="text">Wishlist</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left nav-all-mobile">
-                                        <a href="page-404.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset">
-                                            <span class="text">404</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left nav-all-mobile">
-                                        <a href="register.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset">
-                                            <span class="text">Register</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left nav-all-mobile">
-                                        <a href="faqs.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset">
-                                            <span class="text">Faqs</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left nav-all-mobile">
-                                        <a href="about-us.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset">
-                                            <span class="text">About Us 1</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left nav-all-mobile">
-                                        <a href="about-us-2.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset">
-                                            <span class="text">About Us 2</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left nav-all-mobile">
-                                        <a href="contact-us.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset">
-                                            <span class="text">Contact Us 1</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left nav-all-mobile">
-                                        <a href="contact-us-2.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset">
-                                            <span class="text">Contact Us 2</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left nav-all-mobile">
-                                        <a href="lookbook.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset">
-                                            <span class="text">Lookbook 1</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left nav-all-mobile">
-                                        <a href="lookbook-2.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset">
-                                            <span class="text">Lookbook 2</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left nav-all-mobile">
-                                        <a href="portfolio.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset">
-                                            <span class="text">Portfolio 1</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left nav-all-mobile">
-                                        <a href="portfolio-2.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset">
-                                            <span class="text">Portfolio 2</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="menu-lv-item menu-lv-1 text-left no-megamenu dropdown">
-                            <a href="#" class="menu-lv-1__action list-menu__item menu_mobile_link link focus-inset  menu-lv__flex">
-                                <span class="custom-icon style-circle">
-                                    <img src="ShoppingAssets/assets/images/menu-mobile/lv-1-4.png" alt="Blog">
-                                </span>
-                                <span class="text">Blog</span>
-                                <span class="icon-dropdown" data-toggle-menu-mb>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret">
-                                        <path d="M 7.75 1.34375 L 6.25 2.65625 L 14.65625 12 L 6.25 21.34375 L 7.75 22.65625 L 16.75 12.65625 L 17.34375 12 L 16.75 11.34375 Z"></path>
-                                    </svg>
-                                </span>
-                            </a>
-                            <div class="menu-lv__dropdownmenu menu-dropdown">
-                                <ul class="menu-lv__list list-menu list-unstyled motion-reduce">
-                                    <li class="menu-lv-item menu-lv-2 nav-title-mobile text-center">
-                                        <span class="icon-dropdown">
-                                            <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="long-arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon-arrow-nav"><path fill="currentColor" d="M136.97 380.485l7.071-7.07c4.686-4.686 4.686-12.284 0-16.971L60.113 273H436c6.627 0 12-5.373 12-12v-10c0-6.627-5.373-12-12-12H60.113l83.928-83.444c4.686-4.686 4.686-12.284 0-16.971l-7.071-7.07c-4.686-4.686-12.284-4.686-16.97 0l-116.485 116c-4.686 4.686-4.686 12.284 0 16.971l116.485 116c4.686 4.686 12.284 4.686 16.97-.001z" class=""></path></svg>
-                                        </span>
-                                        <span class="menu-lv-2__action link focus-inset">
-                                            <span class="text">Blog</span>
-                                        </span>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left">
-                                        <a href="blog-default.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset menu-lv__flex">
-                                            <span class="text">Blog Default Layout</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left">
-                                        <a href="blog-with-right-sidebar.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset menu-lv__flex">
-                                            <span class="text">Blog With Right Sidebar</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left">
-                                        <a href="blog-layout-masonry.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset menu-lv__flex">
-                                            <span class="text">Blog Masonry</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left">
-                                        <a href="blog-layout-full-width.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset menu-lv__flex">
-                                            <span class="text">Blog Full-width</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left">
-                                        <a href="article.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset menu-lv__flex">
-                                            <span class="text">Blog Post with Gallery</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left">
-                                        <a href="article-2.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset menu-lv__flex">
-                                            <span class="text">Blog Post with Product Widget</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="menu-lv-item menu-lv-1 text-left no-megamenu dropdown">
-                            <a href="#" class="menu-lv-1__action list-menu__item menu_mobile_link link focus-inset  menu-lv__flex">
-                                <span class="custom-icon style-circle">
-                                    <img src="ShoppingAssets/assets/images/menu-mobile/lv-1-2.png" alt="Blog">
-                                </span>
-                                <span class="text">Products</span>
-                                <span class="icon-dropdown" data-toggle-menu-mb>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret">
-                                        <path d="M 7.75 1.34375 L 6.25 2.65625 L 14.65625 12 L 6.25 21.34375 L 7.75 22.65625 L 16.75 12.65625 L 17.34375 12 L 16.75 11.34375 Z"></path>
-                                    </svg>
-                                </span>
-                            </a>
-                            <div class="menu-lv__dropdownmenu menu-dropdown">
-                                <ul class="menu-lv__list list-menu list-unstyled motion-reduce">
-                                    <li class="menu-lv-item menu-lv-2 nav-title-mobile text-center">
-                                        <span class="icon-dropdown">
-                                            <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="long-arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon-arrow-nav"><path fill="currentColor" d="M136.97 380.485l7.071-7.07c4.686-4.686 4.686-12.284 0-16.971L60.113 273H436c6.627 0 12-5.373 12-12v-10c0-6.627-5.373-12-12-12H60.113l83.928-83.444c4.686-4.686 4.686-12.284 0-16.971l-7.071-7.07c-4.686-4.686-12.284-4.686-16.97 0l-116.485 116c-4.686 4.686-4.686 12.284 0 16.971l116.485 116c4.686 4.686 12.284 4.686 16.97-.001z" class=""></path></svg>
-                                        </span>
-                                        <span class="menu-lv-2__action link focus-inset">
-                                            <span class="text">Products</span>
-                                        </span>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left">
-                                        <a href="product-layout-default.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset menu-lv__flex">
-                                            <span class="text">Layout 01 - Default</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left">
-                                        <a href="product-layout-full-width.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset menu-lv__flex">
-                                            <span class="text">Layout 02 - Full Width</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left">
-                                        <a href="product-layout-image-gallery.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset menu-lv__flex">
-                                            <span class="text">Layout 03 - Grid View</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left">
-                                        <a href="product-layout-left-vertical.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset menu-lv__flex">
-                                            <span class="text">Layout 04 - Left Thumb</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left">
-                                        <a href="product-layout-right-vertical.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset menu-lv__flex">
-                                            <span class="text">Layout 05 - Right Thumb</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left">
-                                        <a href="product-layout-left-sidebar.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset menu-lv__flex">
-                                            <span class="text">Layout 06 - Left Sidebar</span>
-                                        </a>
-                                    </li>
-                                    <li class="menu-lv-item menu-lv-2 text-left">
-                                        <a href="product-layout-right-sidebar.html" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset menu-lv__flex">
-                                            <span class="text">Layout 07 - Right Sidebar</span>
-                                        </a>
-                                    </li>
+                                    @if (Model.Categories != null)
+                                    {
+
+
+                                        @foreach (Category category in Model.Categories)
+                                        {
+                                            <li class="menu-lv-item menu-lv-1 text-left no-megamenu dropdown">
+                                                <a href="danh-muc/@category.Alias" class="menu-lv-1__action list-menu__item menu_mobile_link link focus-inset  menu-lv__flex">
+
+                                                    <span class="text">@category.CatName</span>
+                                                    <span class="icon-dropdown" data-toggle-menu-mb>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" role="presentation" class="icon icon-caret">
+                                                            <path d="M 7.75 1.34375 L 6.25 2.65625 L 14.65625 12 L 6.25 21.34375 L 7.75 22.65625 L 16.75 12.65625 L 17.34375 12 L 16.75 11.34375 Z"></path>
+                                                        </svg>
+                                                    </span>
+                                                </a>
+                                                <div class="menu-lv__dropdownmenu menu-dropdown">
+                                                    <ul class="menu-lv__list list-menu list-unstyled motion-reduce">
+                                                        <li class="menu-lv-item menu-lv-2 nav-title-mobile text-center">
+                                                            <span class="icon-dropdown">
+                                                                <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="long-arrow-left" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="icon-arrow-nav"><path fill="currentColor" d="M136.97 380.485l7.071-7.07c4.686-4.686 4.686-12.284 0-16.971L60.113 273H436c6.627 0 12-5.373 12-12v-10c0-6.627-5.373-12-12-12H60.113l83.928-83.444c4.686-4.686 4.686-12.284 0-16.971l-7.071-7.07c-4.686-4.686-12.284-4.686-16.97 0l-116.485 116c-4.686 4.686-4.686 12.284 0 16.971l116.485 116c4.686 4.686 12.284 4.686 16.97-.001z" class=""></path></svg>
+                                                            </span>
+                                                            <span class="menu-lv-2__action link focus-inset">
+                                                                <span class="text">@category.CatName</span>
+                                                            </span>
+                                                        </li>
+                                                        @foreach (Category chillCategory in category.InverseParent)
+                                                        {
+
+                                                            <li class="menu-lv-item menu-lv-2 text-left">
+                                                                <a href="danh-muc/@chillCategory.Alias" class="menu-lv-2__action list-menu__item menu_mobile_link link focus-inset menu-lv__flex">
+                                                                    <span class="text">@chillCategory.CatName</span>
+                                                                </a>
+                                                            </li>
+
+                                                        }
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                        }
+
+                                    }
+
                                 </ul>
                             </div>
                         </li>
                         <li class="menu-lv-item menu-lv-1 text-left no-megamenu">
                             <a href="#" class="menu-lv-1__action list-menu__item menu_mobile_link link focus-inset  menu-lv__flex">
-                                <span class="custom-icon style-circle">
-                                    <img src="ShoppingAssets/assets/images/menu-mobile/lv-1-5.png" alt="Buy Theme">
+                                <span>
+                                    <i class="fa-solid fa-file-contract"></i>
                                 </span>
-                                <span class="text">Buy Ella</span>
+                                <span class="text">Chính sách đổi trả</span>
                             </a>
                         </li>
                         <li class="menu-lv-item menu-lv-1 text-left no-megamenu">
                             <a href="wishlists.html" class="menu-lv-1__action list-menu__item menu_mobile_link link focus-inset  menu-lv__flex">
-                                <span class="custom-icon style-circle">
-                                    <img src="ShoppingAssets/assets/images/menu-mobile/lv-1-6.png" alt="My Wish List">
+                                <span>
+                                    <i class="fa-solid fa-store"></i>
                                 </span>
-                                <span class="text">My Wish List</span>
+                                <span class="text">Hệ thống cửa hàng</span>
                             </a>
                         </li>
                         <li class="menu-lv-item menu-lv-1 text-left no-megamenu">
                             <a href="register.html" class="menu-lv-1__action list-menu__item menu_mobile_link link focus-inset  menu-lv__flex">
-                                <span class="custom-icon style-circle">
-                                    <img src="ShoppingAssets/assets/images/menu-mobile/lv-1-7.png" alt="My Account">
+                                <span>
+                                    <i class="fa-solid fa-sign-hanging"></i>
                                 </span>
-                                <span class="text">My Account</span>
+                                <span class="text">Hướng dẫn</span>
                             </a>
                         </li>
                     </ul>
@@ -3424,174 +2956,6 @@
                 </div>
             </div>
         </div><!-- END: Menu Sidebar -->
-
-        <div class="halo-sidebar halo-sidebar-right halo-leave-sidebar" id="halo-leave-sidebar" data-time="300000">
-            <div class="wrapper-leave">
-                <div class="halo-sidebar-wrapper custom-scrollbar">
-                    <div class="wrapper-banner">
-                        <a href="#" class="img-box">
-                            <img src="./ShoppingAssets/assets/images/banners/sidebar/before-you_banner.png" alt="Before you leave banner">
-                        </a>
-                        <div class="content content-box--center content-box--absolute text-center">
-                            <h3 class="title">Before you leave...</h3>
-                            <p class="desc desc-1">Take 20% off your first order</p>
-                            <h3 class="heading-1 uppercase">
-                                <span class="text">20% off</span>
-                            </h3>
-                            <p class="desc desc-2">Enter the code below at checkout to get 20% off your first order</p>
-                            <h3 class="heading-2 uppercase">codesale20</h3>
-                            <a class="button button-2" href="#">
-                                <span class="text">Continue Shopping</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="wrapper-content">
-                        <div class="content-title">
-                            <h3 class="title">
-                                <span class="text">
-                                    Recommended
-                                </span>
-                                <span class="count">3</span>
-                            </h3>
-                        </div>
-                        <div class="content-product">
-                            <div class="halo-row-item product-item halo-row-item product-item-custom">
-                                <div class="product-card">
-                                    <div class="product-card-top">
-                                        <a href="#" class="card-media img-box">
-                                            <img src="./ShoppingAssets/assets/images/card-product/img-18.jpg" alt="Halo Product">
-                                        </a>
-                                    </div>
-                                    <div class="product-card-bottom">
-                                        <div class="product-card-information text-left">
-                                            <a href="#" class="card-title link-underline card-title-ellipsis">
-                                                <span class="text">Dinterdum Pretium Condimento <span data-change-title> - Blue</span></span>
-                                            </a>
-                                            <div class="card-price price__sale">
-                                                <div class="price-item price-item--regular">
-                                                    <span class="money ">$140.00</span>
-                                                </div>
-                                                <div class="price-item price__last">
-                                                    <span class="money ">$126.00</span>
-                                                </div>
-                                            </div>
-                                            <div class="card-swatch text-center clearfix">
-                                                <ul class="swatch list-unstyled">
-                                                    <li class="item">
-                                                        <label class="swatch-label is-active" data-value="Blue" data-variant-id>
-                                                            <span class="pattern" style="background-color: #4b6cc0"></span>
-                                                        </label>
-                                                    </li>
-                                                    <li class="item">
-                                                        <label class="swatch-label" data-value="Green" data-variant-id>
-                                                            <span class="pattern" style="background-color: mediumseagreen"></span>
-                                                        </label>
-                                                    </li>
-                                                    <li class="item">
-                                                        <label class="swatch-label" data-value="moccasin" data-variant-id>
-                                                            <span class="pattern" style="background-color: moccasin"></span>
-                                                        </label>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <a class="card-button text-underline" href="#" tabindex="0">
-                                                <span class="text">Details</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-card">
-                                    <div class="product-card-top">
-                                        <a href="#" class="card-media img-box">
-                                            <img src="./ShoppingAssets/assets/images/card-product/img-10.jpg" alt="Halo Product">
-                                        </a>
-                                    </div>
-                                    <div class="product-card-bottom">
-                                        <div class="product-card-information text-left">
-                                            <a href="#" class="card-title link-underline card-title-ellipsis">
-                                                <span class="text">Naminos Dementus A Milance<span data-change-title> - Green</span></span>
-                                            </a>
-                                            <div class="card-price price__sale">
-                                                <div class="price-item price-item--regular">
-                                                    <span class="money ">$189.00</span>
-                                                </div>
-                                                <div class="price-item price__last">
-                                                    <span class="money ">$87.00</span>
-                                                </div>
-                                            </div>
-                                            <div class="card-swatch text-center clearfix">
-                                                <ul class="swatch list-unstyled">
-                                                    <li class="item">
-                                                        <label class="swatch-label is-active" data-value="Green" data-variant-id>
-                                                            <span class="pattern" style="background-color: mediumseagreen"></span>
-                                                        </label>
-                                                    </li>
-                                                    <li class="item">
-                                                        <label class="swatch-label" data-value="moccasin" data-variant-id>
-                                                            <span class="pattern" style="background-color: moccasin"></span>
-                                                        </label>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <a class="card-button text-underline" href="#" tabindex="0">
-                                                <span class="text">Details</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="product-card">
-                                    <div class="product-card-top">
-                                        <a href="#" class="card-media img-box">
-                                            <img src="./ShoppingAssets/assets/images/card-product/img-8.jpg" alt="Halo Product">
-                                        </a>
-                                    </div>
-                                    <div class="product-card-bottom">
-                                        <div class="product-card-information text-left">
-                                            <a href="#" class="card-title link-underline card-title-ellipsis">
-                                                <span class="text">Magnis Darturien Meros Laciniado<span data-change-title> - Black</span></span>
-                                            </a>
-                                            <div class="card-price price__sale">
-                                                <div class="price-item price-item--regular">
-                                                    <span class="money ">$139.00</span>
-                                                </div>
-                                                <div class="price-item price__last">
-                                                    <span class="money ">$60.00</span>
-                                                </div>
-                                            </div>
-                                            <div class="card-swatch text-center clearfix">
-                                                <ul class="swatch list-unstyled">
-                                                    <li class="item">
-                                                        <label class="swatch-label is-active" data-value="black" data-variant-id>
-                                                            <span class="pattern" style="background-color: black"></span>
-                                                        </label>
-                                                    </li>
-                                                    <li class="item">
-                                                        <label class="swatch-label" data-value="moccasin" data-variant-id>
-                                                            <span class="pattern" style="background-color: moccasin"></span>
-                                                        </label>
-                                                    </li>
-                                                    <li class="item">
-                                                        <label class="swatch-label" data-value="Blue" data-variant-id>
-                                                            <span class="pattern" style="background-color: #4b6cc0"></span>
-                                                        </label>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <a class="card-button text-underline" href="#" tabindex="0">
-                                                <span class="text">Details</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="button-leave">
-                            <a href="#" class="button button-1">Continue Shopping</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div><!-- END: Halo Leave Sidebar -->
         @*        <div class="halo-accept-cookie-popup" >
         <div class="block-accept">
         <p class="desc">
@@ -4131,7 +3495,9 @@
     <!-- Plugins elevateZoom JS File -->
     <script src="./ShoppingAssets/lib/jquery.elevateZoom/jquery.elevateZoom.min.js"></script>
     <!-- Main JS File -->
-    <script src="ShoppingAssets/assets/js/theme.min.js"></script>
+    <script src="./ShoppingAssets/assets/js/theme.js"></script>
+    <script src="./ShoppingAssets/assets/js/test.js"></script>
+
     @await RenderSectionAsync("Scripts",required: false)
 
 </body>
