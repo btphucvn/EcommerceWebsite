@@ -48,31 +48,28 @@ namespace EcommerceWebsite.Areas.API.Controllers
 
         // GET: api/products
         [HttpGet("GetProductByAlias/{alias}")]
-        public async Task<ActionResult<Category>> GetProductByAlias(string alias)
+        public async Task<ActionResult<IEnumerable<Category>>> GetProductByAlias(string alias)
         {
-            var category = await _context.Categories
+            List<Category> categories = null;
+            if (alias == "all")
+            {
+                categories = await _context.Categories
+                    .Include(x => x.Products)
+                    .ToListAsync();
+            }
+            else
+            {
+                categories = await _context.Categories
                 .Include(x => x.Products)
                 .Where(x => x.Alias == alias)
-                .FirstAsync();
-            return category;
-        }
+                .ToListAsync();
 
-        // GET: api/Categories/5
-        [HttpGet("{alias}")]
-        public async Task<ActionResult<Category>> GetCategory(string alias)
-        {
-            var category = await _context.Categories
-                .Include(x=>x.Products)
-                .Where(x => x.Alias == alias)
-                .FirstAsync();
-
-            if (category == null)
-            {
-                return NotFound();
             }
 
-            return category;
+            return categories;
         }
+
+
 
         //// PUT: api/Categories/5
         //// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754

@@ -9,14 +9,14 @@ namespace EcommerceWebsite.Controllers
     public class CategoriesController : Controller
     {
 
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<CategoriesController> _logger;
 
-        public CategoriesController(ILogger<HomeController> logger)
+        public CategoriesController(ILogger<CategoriesController> logger)
         {
             _logger = logger;
         }
-
-
+        
+       // [Route("{alias?}")]
         public async Task<IActionResult> Index(string? alias)
         {
             dynamic model = new System.Dynamic.ExpandoObject();
@@ -24,14 +24,22 @@ namespace EcommerceWebsite.Controllers
             List<Category> categories = JsonConvert.DeserializeObject<List<Category>>(categoriesJson);
 
             model.Categories = categories;
+            model.Alias = alias;
             if (alias != null)
             {
                 string categoryJson = await RestAPI.GetJSON("https://" + Request.Host.Value + "/api/Categories/GetProductByAlias/" + alias);
-                Category category = JsonConvert.DeserializeObject<Category>(categoryJson);
-                model.Category = category;
+                List<Category> categoryWithProduct = JsonConvert.DeserializeObject<List<Category>>(categoryJson);
+                model.CategoryWithProduct = categoryWithProduct;
+            }
+            else
+            {
+                string categoryJson = await RestAPI.GetJSON("https://" + Request.Host.Value + "/api/Categories/GetProductByAlias/" + "all");
+                List<Category> categoryWithProduct = JsonConvert.DeserializeObject<List<Category>>(categoryJson);
+                model.CategoryWithProduct = categoryWithProduct;
             }
             return View(model);
         }
+
 
     }
 }
